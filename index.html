@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 16px;
+    }
+    #content {
+      width: 100%;
+      height: 200px;
+    }
+    #tool {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-around;
+    }
+    button {
+      width: 30%;
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <textarea id="content"></textarea>
+    <div id="tool">
+      <button id="lack">提交</button>
+      <button id="clearAll">清空</button>
+    </div>
+    <div id="result"></div>
+  </div>
+  <script>
+    var students = [
+      "郭效言",
+      "肖祎扬",
+      "刘杨",
+      "杨迎楠",
+      "王阔",
+      "李卓林",
+      "刘明浩",
+      "白育卓",
+      "田宏磊",
+      "董鉴",
+      "朱佳慧",
+      "韩春宇",
+      "梁泽辉",
+      "胡建坤",
+      "穆田博",
+      "王雨",
+      "叶凌薇",
+      "招新奥",
+      "赵堉瑄",
+      "赵悦冉",
+      "刘镇赫",
+      "刘羽",
+      "荆皓杰",
+      "王永波",
+      "赵佳",
+      "付敬泽",
+      "石铭滨",
+      "郭向睿",
+      "刘瑷玮",
+      "白冰",
+      "张瑛琦",
+      "衡文轩",
+      "刘欣沅",
+      "李默",
+      "杜明亮"
+    ];
+
+    function clearAll() {
+      var contentEle = document.getElementById('content');
+      contentEle.value = "";
+      var result = document.getElementById('result');
+      result.innerHTML = "";
+    }
+
+    function lack() {
+      var contentEle = document.getElementById('content');
+      var content = contentEle.value;
+      var lackStudents = [];
+      for (var i = 0; i < students.length; i++) {
+        var name = students[i];
+        if (content.indexOf(name) === -1) {
+          lackStudents.push(name);
+        }
+      }
+      var result = document.getElementById('result');
+      result.innerHTML = "";
+      result.appendChild(createPItem("缺少" + lackStudents.length + "人"));
+      result.appendChild(createPItem(lackStudents.join(' ')));
+    }
+
+    function createPItem(value) {
+      var p = document.createElement('p');
+      p.textContent = value;
+      return p;
+    }
+
+    window.onload = function() {
+      alert(1)
+      // First we check if you support touch, otherwise it's click:
+      var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+      // Then we bind via thát event. This way we only bind one event, instead of the two as below
+      document.getElementById('lack').addEventListener(touchEvent, lack);
+      document.getElementById('clearAll').addEventListener(touchEvent, clearAll);
+    }
+    </script>
+</body>
+
+</html>
