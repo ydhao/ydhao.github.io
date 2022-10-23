@@ -1,40 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="utf-8">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Document</title>
+  <title>Yandong Love AiJia</title>
   <style>
     body {
-      padding: 16px;
+      padding: 0 8px;
     }
+
+    #header {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 22px;
+    }
+
     #content {
       width: 100%;
       height: 200px;
+      box-sizing: border-box;
+      margin: 0;
+      font-variant: tabular-nums;
+      list-style: none;
+      font-feature-settings: "tnum";
+      position: relative;
+      display: inline-block;
+      min-width: 0;
+      padding: 4px 11px;
+      color: #000000d9;
+      font-size: 14px;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #d9d9d9;
+      border-radius: 2px;
+      max-width: 100%;
+      min-height: 32px;
+      line-height: 1.5715;
+      vertical-align: bottom;
+      transition: all .3s, height 0s;
     }
+
+    #content:focus {
+      border-color: #40a9ff;
+      box-shadow: 0 0 0 1px #40a9ff;
+      border-right-width: 1px;
+      outline: 0;
+    }
+
+    #content:hover {
+      border-color: #40a9ff;
+      border-right-width: 1px;
+    }
+
+    .content {
+      width: 100%;
+    }
+
     #tool {
       margin-top: 16px;
       display: flex;
       justify-content: space-around;
     }
+
+    .button {
+      line-height: 1.5715;
+      position: relative;
+      display: inline-block;
+      font-weight: 400;
+      white-space: nowrap;
+      text-align: center;
+      background-image: none;
+      cursor: pointer;
+      transition: all .3s cubic-bezier(.645, .045, .355, 1);
+      color: #fff;
+      border-color: #1890ff;
+      background: #1890ff;
+      text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+      box-shadow: 0 2px #0000000b;
+    }
+
+    .button,
+    .button:active,
+    .button:focus {
+      outline: 0;
+    }
+
     button {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+      height: 32px;
+      padding: 4px 15px;
+      font-size: 14px;
+      border-radius: 2px;
       width: 30%;
-      height: 30px;
+      cursor: pointer;
+      border: 1px solid transparent;
     }
   </style>
 </head>
 
 <body>
-  <div>
+  <header id="header">9年5班人员统计表</header>
+  <section class="content">
     <textarea id="content"></textarea>
-    <div id="tool">
-      <button id="lack">提交</button>
-      <button id="clearAll">清空</button>
-    </div>
-    <div id="result"></div>
+  </section>
+  <div id="tool">
+    <button id="clearAll">清空</button>
+    <button id="lack" class="button">提交</button>
   </div>
+  <div id="result"></div>
   <script>
     var students = [
       "郭效言",
@@ -103,14 +184,15 @@
       return p;
     }
 
-    window.onload = function() {
+    window.onload = function () {
+      document.getElementById('content').focus();
       // First we check if you support touch, otherwise it's click:
       var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
       // Then we bind via thát event. This way we only bind one event, instead of the two as below
       document.getElementById('lack').addEventListener(touchEvent, lack);
       document.getElementById('clearAll').addEventListener(touchEvent, clearAll);
     }
-    </script>
+  </script>
 </body>
 
 </html>
